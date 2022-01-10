@@ -1,1 +1,1 @@
-# PrimeLudo
+# LudoPrime
