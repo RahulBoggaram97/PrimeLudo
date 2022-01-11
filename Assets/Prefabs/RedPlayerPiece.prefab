@@ -131,6 +131,7 @@ MonoBehaviour:
   canMove: 0
   moveNow: 0
   numberOfStepsAlreadyMoved: 0
+  speed: 100
   pathsParent: {fileID: 0}
   previousPathPoint: {fileID: 0}
   currentPathPoint: {fileID: 0}
@@ -152,4 +153,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.72
+  m_Radius: 1
