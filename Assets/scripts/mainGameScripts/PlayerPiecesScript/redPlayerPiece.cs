@@ -11,10 +11,12 @@ namespace com.impactionalGames.LudoPrime
         public RollinDice redDice;
         public int individualScore;
 
+        
 
         private void OnMouseDown()
         {
             photonCaller();
+
         }
 
         void photonCaller()
@@ -25,6 +27,8 @@ namespace com.impactionalGames.LudoPrime
             }
 
         }
+
+        
 
         [PunRPC]
         void movePiece()

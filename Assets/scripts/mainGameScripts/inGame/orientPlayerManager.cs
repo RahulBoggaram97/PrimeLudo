@@ -12,7 +12,7 @@ namespace com.impactionalGames.LudoPrime
 
 
         public GameObject ludoBoard;
-        
+
 
         public SpriteRenderer[] playerColourSpriteRenderer;
 
@@ -29,7 +29,9 @@ namespace com.impactionalGames.LudoPrime
 
         public GameObject[] dices;
 
-       
+        public lobbyManager lobMan;
+
+
 
         private void Start()
         {
@@ -38,7 +40,7 @@ namespace com.impactionalGames.LudoPrime
 
         public void setGamePanelForTwo()
         {
-            if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[0])
+            if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[0])
             {
                 //setting the userNames
                 inGameUsername[0].text = PhotonNetwork.PlayerList[0].NickName;
@@ -60,6 +62,8 @@ namespace com.impactionalGames.LudoPrime
 
 
                 //setting up the dices
+
+                //setting up the player pieces
 
 
             }
@@ -87,6 +91,10 @@ namespace com.impactionalGames.LudoPrime
 
                 //setting up the dices
                 swapDicePosition(0, 2);
+
+                //setting up the player pieces
+                rotatePlayerPieces(0, 180);
+                rotatePlayerPieces(2, 180);
 
             }
             else
@@ -120,10 +128,10 @@ namespace com.impactionalGames.LudoPrime
 
             }
 
-            else if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[1])
+            else if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[1])
             {
                 //setting the userNames
-                ludoBoard.transform.Rotate(0, 0 , 90);
+                ludoBoard.transform.Rotate(0, 0, 90);
                 inGameUsername[0].text = PhotonNetwork.PlayerList[1].NickName;
                 inGameUsername[1].text = PhotonNetwork.PlayerList[2].NickName;
                 inGameUsername[2].gameObject.SetActive(false);
@@ -146,6 +154,11 @@ namespace com.impactionalGames.LudoPrime
                 swapDicePosition(1, 3);
                 swapDicePosition(3, 2);
 
+                //setting up the player pieces
+                rotatePlayerPieces(0, 90);
+                rotatePlayerPieces(1, 90);
+                rotatePlayerPieces(2, 90);
+
             }
 
             else if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[2])
@@ -159,7 +172,7 @@ namespace com.impactionalGames.LudoPrime
 
                 //setting the scores
                 swapScoreArrays(0, 2);
-                swapScoreArrays(1, 3);  
+                swapScoreArrays(1, 3);
                 scoreArray[3].gameObject.SetActive(false);
 
                 //setting up the box next to the dice
@@ -170,7 +183,12 @@ namespace com.impactionalGames.LudoPrime
 
                 //setting up the dices
                 swapDicePosition(0, 2);
-                swapDicePosition(1, 3);  
+                swapDicePosition(1, 3);
+
+                //setting up the player pieces
+                rotatePlayerPieces(0, 180);
+                rotatePlayerPieces(1, 180);
+                rotatePlayerPieces(2, 180);
 
             }
 
@@ -230,6 +248,12 @@ namespace com.impactionalGames.LudoPrime
                 swapDicePosition(1, 3);
                 swapDicePosition(3, 2);
 
+                //setting up the player pieces
+                rotatePlayerPieces(0, 90);
+                rotatePlayerPieces(1, 90);
+                rotatePlayerPieces(2, 90);
+                rotatePlayerPieces(3, 90);
+
             }
 
             else if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[2])
@@ -256,11 +280,17 @@ namespace com.impactionalGames.LudoPrime
                 swapDicePosition(0, 2);
                 swapDicePosition(1, 3);
 
+                //setting up the player pieces
+                rotatePlayerPieces(0, 180);
+                rotatePlayerPieces(1, 180);
+                rotatePlayerPieces(2, 180);
+                rotatePlayerPieces(3, 180);
+
             }
 
-            else if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[3])
+            else if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[3])
             {
-                ludoBoard.transform.Rotate(0, 0, 180);
+                ludoBoard.transform.Rotate(0, 0, 270);
 
                 //setting the userNames
                 inGameUsername[0].text = PhotonNetwork.PlayerList[3].NickName;
@@ -284,6 +314,11 @@ namespace com.impactionalGames.LudoPrime
                 swapDicePosition(1, 3);
                 swapDicePosition(2, 1);
 
+                //setting up the player pieces
+                rotatePlayerPieces(0, 270);
+                rotatePlayerPieces(1, 270);
+                rotatePlayerPieces(2, 270);
+                rotatePlayerPieces(3, 270);
 
             }
 
@@ -305,6 +340,14 @@ namespace com.impactionalGames.LudoPrime
 
             dices[index1].transform.position = dices[index2].transform.position;
             dices[index2].transform.position = temp;
+        }
+
+        void rotatePlayerPieces(int colourIndex, float zRotation)
+        {
+            lobMan.colourPieces[colourIndex].playerPieces[0].transform.Rotate(0f, 0f, zRotation);
+            lobMan.colourPieces[colourIndex].playerPieces[1].transform.Rotate(0f, 0f, zRotation);
+            lobMan.colourPieces[colourIndex].playerPieces[2].transform.Rotate(0f, 0f, zRotation);
+            lobMan.colourPieces[colourIndex].playerPieces[3].transform.Rotate(0f, 0f, zRotation);
         }
     }
 

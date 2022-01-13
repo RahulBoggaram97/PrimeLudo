@@ -20,6 +20,8 @@ namespace com.impactionalGames.LudoPrime
 
         Coroutine moveSteps_Coroutine;
 
+       
+
         private void Awake()
         {
             pathsParent = FindObjectOfType<PathObjectsParent>();
@@ -48,6 +50,8 @@ namespace com.impactionalGames.LudoPrime
             GameManager.gm.transferDice = false;
         }
 
+        
+
         IEnumerator MoveSteps_Enum(PathPoints[] pathPointsToMoveOn_)
         {
             yield return new WaitForSeconds(0.5f);
@@ -60,12 +64,17 @@ namespace com.impactionalGames.LudoPrime
                 {
                     if (isPathPointsAvailableToMove(numOfStepsToMove, numberOfStepsAlreadyMoved, pathPointsToMoveOn_))
                     {
+                        transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
                         transform.position = pathPointsToMoveOn_[i].transform.position;
+                        
 
                         yield return new WaitForSeconds(0.5f);
 
                     }
                 }
+
+
+                transform.localScale = new Vector3(0.11f, 0.11f, 0.11f);
             }
 
             if (isPathPointsAvailableToMove(numOfStepsToMove, numberOfStepsAlreadyMoved, pathPointsToMoveOn_))
