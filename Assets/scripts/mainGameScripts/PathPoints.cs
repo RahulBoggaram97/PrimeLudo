@@ -21,7 +21,7 @@ namespace com.impactionalGames.LudoPrime
         public bool AddPlayerPiece(PlayerPiece playerPiece_)
         {
             if (this.name == "CentreHomePoint") { Completed(playerPiece_); }
-            if (this.name != "PathPoints" && this.name != "PathPoints (8)" && this.name != "PathPoints (13)" && this.name != "PathPoints (21)" && this.name != "PathPoints (26)" && this.name != "PathPoints (34)" && this.name != "PathPoints (39)" && this.name != "PathPoints (47)" && this.name != "CentreHomePoint")
+            else if (this.name != "PathPoints" && this.name != "PathPoints (8)" && this.name != "PathPoints (13)" && this.name != "PathPoints (21)" && this.name != "PathPoints (26)" && this.name != "PathPoints (34)" && this.name != "PathPoints (39)" && this.name != "PathPoints (47)" && this.name != "CentreHomePoint")
             {
                 if (playerPieces.Count == 1)
                 {
@@ -43,16 +43,31 @@ namespace com.impactionalGames.LudoPrime
                         playerPieces.Add(playerPiece_);
 
                         
+
                         ////playerpiece.dice.setScore(-previousPlayer.indivdualScore);
                         return false;
                     }
+
+                    else if(prePlayerPieceName.Contains(curPlayerPieceName))
+                    {
+                        //if they are of same colour we lower the scale and offsets them a bit
+                        playerPieces[0].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+
+
+                        playerPieces[0].transform.position = playerPieces[0].transform.position + new Vector3(0.07f, 0f, 0f);
+
+                        playerPiece_.gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+
+
+                        playerPiece_.transform.position = playerPieces[0].transform.position + new Vector3(-0.14f, 0f, 0f);
+
+
+                        addPlayer(playerPiece_);
+                        return true;
+                    }
                 }
 
-                else
-                {
-                    addPlayer(playerPiece_);
-                    return true;
-                }
+               
             }
             addPlayer(playerPiece_);
             return true;
@@ -148,6 +163,10 @@ namespace com.impactionalGames.LudoPrime
             if (playerPieces.Contains(playerPiece_))
             {
                 playerPieces.Remove(playerPiece_);
+            }
+            else
+            {
+                return;
             }
         }
 

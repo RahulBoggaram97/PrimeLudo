@@ -73,8 +73,7 @@ namespace com.impactionalGames.LudoPrime
                     }
                 }
 
-
-                transform.localScale = new Vector3(0.11f, 0.11f, 0.11f);
+                transform.localScale = new Vector3(0.10f, 0.10f, 0.10f);
             }
 
             if (isPathPointsAvailableToMove(numOfStepsToMove, numberOfStepsAlreadyMoved, pathPointsToMoveOn_))
@@ -84,7 +83,10 @@ namespace com.impactionalGames.LudoPrime
                 //GameManager.gm.numOfStepsToMove = 0;
 
                 GameManager.gm.RemovePathPoint(previousPathPoint);
-                //previousPathPoint.RemovePlayerPiece(this);
+                if (previousPathPoint != null)
+                {
+                    previousPathPoint.RemovePlayerPiece(this);
+                }
                 currentPathPoint = pathPointsToMoveOn_[numberOfStepsAlreadyMoved - 1];
 
                 if (currentPathPoint.AddPlayerPiece(this))
@@ -123,12 +125,12 @@ namespace com.impactionalGames.LudoPrime
             GameManager.gm.CanPlayerMove = true;
             GameManager.gm.RollingDiceManager();
 
-            //if (moveSteps_Coroutine != null)
-            //{
-            //    StopCoroutine(moveSteps_Coroutine);
-            //}
+            if (moveSteps_Coroutine != null)
+            {
+                StopCoroutine(moveSteps_Coroutine);
+            }
 
-            GameManager.gm.RollingDiceManager();
+
         }
 
 
