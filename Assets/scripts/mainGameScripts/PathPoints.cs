@@ -99,6 +99,7 @@ namespace com.impactionalGames.LudoPrime
             }
 
             playerPiece_.transform.position = pathObjectParent.BasePoints[BasePointPosition(playerPiece_)].transform.position;
+            playerPiece_.transform.localScale  = new Vector3(0.06f, 0.06f, 0.06f);
         }
 
 
