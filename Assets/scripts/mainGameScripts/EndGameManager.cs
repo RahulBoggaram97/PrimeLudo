@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace com.impactionalGames.LudoPrime
 {
@@ -41,11 +42,22 @@ namespace com.impactionalGames.LudoPrime
             }
             else if (!chechIfItsCustomLobby())
             {
-                
+                if (checkIfItsOneWinnerLobby())
+                {
+                    declareOneWinnerGame();
+                }
+                else if (checkIfItsTwoWinnersLobby())
+                {
+                    declareOneWinnerGame();
+                }
+                else
+                {
+                    declareOneWinnerGame();
+                }
             }
             else
             {
-                
+                return;
             }
         }
 
@@ -81,6 +93,48 @@ namespace com.impactionalGames.LudoPrime
                     return false;
             }
 
+        }
+
+        bool checkIfItsOneWinnerLobby()
+        {
+            switch (PhotonNetwork.CurrentLobby.Name)
+            {
+                case "oneWinnerOne":
+                    return true;
+                case "oneWinnerFive":
+                    return true;
+                case "oneWinnerTen":
+                    return true;
+                case "oneWinnerTwentyFive":
+                    return true;
+                case "oneWinnerFifty":
+                    return true;
+                case "oneWinnerHundred":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        bool checkIfItsTwoWinnersLobby()
+        {
+            switch (PhotonNetwork.CurrentLobby.Name)
+            {
+                case "twoWinnersOne":
+                    return true;
+                case "twoWinnersFive":
+                    return true;
+                case "twoWinnersTen":
+                    return true;
+                case "twoWinnersTwentyFive":
+                    return true;
+                case "twoWinnersFifty":
+                    return true;
+                case "twoWinnersHundred":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
 
@@ -134,6 +188,29 @@ namespace com.impactionalGames.LudoPrime
                 }
 
             }
+        }
+
+        void declareOneWinnerGame()
+        {
+          Dictionary<int, int> playerRanks = new Dictionary<int, int>();
+            playerRanks.Add(0, scoreDice[0].score);
+            playerRanks.Add(1, scoreDice[1].score);
+            playerRanks.Add(2, scoreDice[2].score);
+            playerRanks.Add(3, scoreDice[3].score);
+
+            int i = 0;
+
+            foreach(var item in playerRanks.OrderBy(i => i.Value))
+            {
+                
+               ranktext[i].text = PhotonNetwork.PlayerList[item.Key].NickName;
+                i++;
+            }
+
+
+
+
+
         }
 
         void setUpleaderBoardName(int rank1, int rank2, int rank3, int rank4)

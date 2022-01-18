@@ -65,13 +65,13 @@ namespace com.impactionalGames.LudoPrime
                     if (isPathPointsAvailableToMove(numOfStepsToMove, numberOfStepsAlreadyMoved, pathPointsToMoveOn_))
                     {
                         transform.localScale = new Vector3(0.11f, 0.12f, 0.11f);
-                        yield return new WaitForSeconds(0.05f);
+                        yield return new WaitForSeconds(0.025f);
 
                         transform.localScale = new Vector3(0.11f, 0.13f, 0.12f);
                         yield return new WaitForSeconds(0.025f);
 
                         transform.localScale = new Vector3(0.12f, 0.14f, 0.13f);
-                        yield return new WaitForSeconds(0.05f);
+                        yield return new WaitForSeconds(0.025f);
 
                         transform.localScale = new Vector3(0.12f, 0.15f, 0.14f);
                         yield return new WaitForSeconds(0.025f);
@@ -82,13 +82,13 @@ namespace com.impactionalGames.LudoPrime
                         
 
                         transform.localScale = new Vector3(0.15f, 0.14f, 0.14f);
-                        yield return new WaitForSeconds(0.05f);
+                        yield return new WaitForSeconds(0.025f);
 
                         transform.localScale = new Vector3(0.14f, 0.14f, 0.13f);
                         yield return new WaitForSeconds(0.025f);
 
                         transform.localScale = new Vector3(0.13f, 0.12f, 0.12f);
-                        yield return new WaitForSeconds(0.05f);
+                        yield return new WaitForSeconds(0.025f);
 
 
                         transform.localScale = new Vector3(0.11f, 0.11f, 0.11f);
@@ -96,7 +96,7 @@ namespace com.impactionalGames.LudoPrime
 
                         transform.localScale = new Vector3(0.10f, 0.10f, 0.10f);
 
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.1f);
 
 
 
