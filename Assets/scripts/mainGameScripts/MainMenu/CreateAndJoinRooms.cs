@@ -12,7 +12,7 @@ namespace com.impactionalGames.LudoPrime
     public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         string gameVersion = "1";
-
+        [Header("Input Field For Creating Private Room")]
         [SerializeField] private InputField createFeild;
         [SerializeField] private InputField joinFeild;
 
@@ -20,18 +20,27 @@ namespace com.impactionalGames.LudoPrime
 
         public string levelToLoad;
 
+        [Header("Panels:")]
         public GameObject loadingPanel;
         public GameObject mainMenuPanel;
         public GameObject TournamentPanel;
         public GameObject profilePanel;
         public GameObject playWithFriendsMenuPanel;
 
+        [Header("Wallet Bar Panels:")]
         public GameObject walletBarPanel;
         public GameObject settingPanel;
         public GameObject rulesPanel;
 
+        [Header("debug:")]
         public Text debugText;
         public string roomCode;
+
+        [Header("debug panel window")]
+        public GameObject debugPanel;
+        public Text pingText;
+        public Text regText;
+        public Text lobbyName;
 
         TypedLobby customLobby = new TypedLobby("customLobby", LobbyType.Default);
 
@@ -57,6 +66,12 @@ namespace com.impactionalGames.LudoPrime
             connect();
 
             DontDestroyOnLoad(walletBarPanel);
+            DontDestroyOnLoad(debugPanel);
+        }
+
+        private void Update()
+        {
+            showDebugInfo();
         }
 
         public void connect()
@@ -90,6 +105,20 @@ namespace com.impactionalGames.LudoPrime
             profilePanel.SetActive(true);
             profilePanel.SetActive(false);
 
+            
+
+
+        }
+
+        void showDebugInfo()
+        {
+            pingText.text = "Ping : " + PhotonNetwork.GetPing().ToString();
+            regText.text = "Reg is :" + PhotonNetwork.CloudRegion;
+
+            if(PhotonNetwork.CurrentLobby != null)
+            {
+                lobbyName.text = "Lobby name is : " + PhotonNetwork.CurrentLobby.Name;
+            }
         }
 
 
