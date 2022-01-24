@@ -22,7 +22,7 @@ namespace com.impactionalGames.LudoPrime
         public Text debugText;
 
         [Header("Singleton Vars")]
-        public static authManager instance;
+        [SerializeField]  public static authManager instance;
 
         public static event Action<loginState> loginStateChanged;
 

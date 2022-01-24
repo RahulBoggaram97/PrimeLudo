@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
+using UnityEngine.UI;
 
 namespace com.impactionalGames.LudoPrime
 {
@@ -15,19 +16,24 @@ namespace com.impactionalGames.LudoPrime
         [Header("variables")]
         private uint phoneAuthTimeOutMs = 60000;
         private string verificationId;
+
+
+        public Text debugText;
  
 
         private void Start()
         {
 
-            FirebaseApp.CheckAndFixDependenciesAsync();
+            
             auth = FirebaseAuth.DefaultInstance;
 
-
+            debugText.text = "start method got called";
 
             if (auth.CurrentUser != null)
             {
                 authManager.instance.updateLoginState(loginState.authenticated);
+
+                debugText.text = "start method got called" + " this is a user rn";
             }
             else
             {
@@ -44,10 +50,13 @@ namespace com.impactionalGames.LudoPrime
 
         void tester()
         {
-
+            debugText.text = "tester got called";
             try
             {
-                //provider = PhoneAuthProvider.GetInstance(auth);
+                provider = PhoneAuthProvider.GetInstance(auth);
+                debugText.text = "tester got called" + " provider:" + provider;
+
+                debugText.text = "tester got called" + " provider:" + provider + authManager.instance.phoneNoField.text;
                 provider.VerifyPhoneNumber(authManager.instance.phoneNoField.text, phoneAuthTimeOutMs, null,
                                                                                   verificationCompleted: (credential) =>
                                                                                   {
@@ -83,7 +92,7 @@ namespace com.impactionalGames.LudoPrime
             }
             catch (System.Exception e)
             {
-                authManager.instance.debugText.text = e.ToString() + " didnt enter the the funtion";
+                authManager.instance.debugText.text = e.ToString() + " didnt enter the the authentication";
             }
 
         }
