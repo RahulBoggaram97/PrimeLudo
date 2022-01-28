@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 namespace com.impactionalGames.LudoPrime
 {
@@ -23,28 +24,22 @@ namespace com.impactionalGames.LudoPrime
         [Header("Panels:")]
         public GameObject loadingPanel;
         public GameObject mainMenuPanel;
-        public GameObject TournamentPanel;
-        public GameObject profilePanel;
+        public GameObject playOnlinePanel;
         public GameObject playWithFriendsMenuPanel;
 
-        [Header("Wallet Bar Panels:")]
-        public GameObject walletBarPanel;
-        public GameObject settingPanel;
-        public GameObject rulesPanel;
+        
 
         [Header("debug:")]
         public Text debugText;
         public string roomCode;
 
-        [Header("debug panel window")]
-        public GameObject debugPanel;
-        public Text pingText;
-        public Text regText;
-        public Text lobbyName;
+        
 
         TypedLobby customLobby = new TypedLobby("customLobby", LobbyType.Default);
 
-        
+
+        [Header("Scenes")]
+        public string walletCanvasUi;
 
         private void Awake()
         {
@@ -56,23 +51,17 @@ namespace com.impactionalGames.LudoPrime
         {
             loadingPanel.SetActive(true);
             mainMenuPanel.SetActive(false);
-            TournamentPanel.SetActive(false);
-           
+            playOnlinePanel.SetActive(false);
             playWithFriendsMenuPanel.SetActive(false);
-            walletBarPanel.SetActive(false);
-            settingPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+            
 
             connect();
 
-            DontDestroyOnLoad(walletBarPanel);
-            DontDestroyOnLoad(debugPanel);
+           
+            
         }
 
-        private void Update()
-        {
-            showDebugInfo();
-        }
+       
 
         public void connect()
         {
@@ -101,25 +90,16 @@ namespace com.impactionalGames.LudoPrime
             Debug.Log("the server has made or connected, now we can create room");
             loadingPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
-            walletBarPanel.SetActive(true);
-            profilePanel.SetActive(true);
-            profilePanel.SetActive(false);
+            //walletBarPanel.SetActive(true);
+            SceneManager.LoadSceneAsync(walletCanvasUi, LoadSceneMode.Additive);
+            
 
             
 
 
         }
 
-        void showDebugInfo()
-        {
-            pingText.text = "Ping : " + PhotonNetwork.GetPing().ToString();
-            regText.text = "Reg is :" + PhotonNetwork.CloudRegion;
-
-            if(PhotonNetwork.CurrentLobby != null)
-            {
-                lobbyName.text = "Lobby name is : " + PhotonNetwork.CurrentLobby.Name;
-            }
-        }
+       
 
 
         //playerwithfriends create room

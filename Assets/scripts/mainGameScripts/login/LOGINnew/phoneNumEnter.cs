@@ -4,6 +4,7 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 namespace com.impactionalGames.LudoPrime
 {
@@ -31,7 +32,7 @@ namespace com.impactionalGames.LudoPrime
 
             if (auth.CurrentUser != null)
             {
-                authManager.instance.updateLoginState(loginState.authenticated);
+                authManager.instance.updateLoginState(loginState.loggedIn);
 
                 debugText.text = "start method got called" + " this is a user rn";
             }
@@ -57,7 +58,7 @@ namespace com.impactionalGames.LudoPrime
                 debugText.text = "tester got called" + " provider:" + provider;
 
                 debugText.text = "tester got called" + " provider:" + provider + authManager.instance.phoneNoField.text;
-                provider.VerifyPhoneNumber(authManager.instance.phoneNoField.text, phoneAuthTimeOutMs, null,
+                provider.VerifyPhoneNumber(authManager.instance.countyCodeField.text +  authManager.instance.phoneNoField.text, phoneAuthTimeOutMs, null,
                                                                                   verificationCompleted: (credential) =>
                                                                                   {
                                                                                       //Auto - sms - retrieval or instant validation has succeeded(Android only).
@@ -119,16 +120,19 @@ namespace com.impactionalGames.LudoPrime
 
                 "Phone provider ID: " + newUser.ProviderId);
 
+                playerPermData.setPhoneNumber(newUser.PhoneNumber);
 
-               authManager.instance.updateLoginState(loginState.authenticated);
+                authManager.instance.updateLoginState(loginState.authenticated);
+
+                debugText.text = authManager.instance.state.ToString();
 
             });
         }
 
-        
-      
 
 
-       
+
+
+
     }
 }

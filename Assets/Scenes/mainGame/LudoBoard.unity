@@ -3450,6 +3450,7 @@ MonoBehaviour:
   - {fileID: 174945886}
   rolleddice: {fileID: 0}
   numOfStepsToMove: 0
+  walletCanvasname: walletUi
 --- !u!114 &495100657
 MonoBehaviour:
   m_ObjectHideFlags: 0

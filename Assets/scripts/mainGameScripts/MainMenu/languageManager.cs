@@ -21,7 +21,7 @@ namespace com.impactionalGames.LudoPrime
 
         public void Start()
         {
-            updateLanguage();
+            //updateLanguage();
             
         }
 

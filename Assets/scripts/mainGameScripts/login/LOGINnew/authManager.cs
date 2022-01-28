@@ -13,10 +13,13 @@ namespace com.impactionalGames.LudoPrime
         [Header("Phone no. panel")]
         public GameObject enterPhonePanel;
         public InputField phoneNoField;
+        public InputField countyCodeField;
 
         [Header("OTP Panel")]
         public GameObject enterOtpPanel;
         public InputField OTPField;
+
+      
 
         [Header("For Debugging")]
         public Text debugText;
@@ -59,6 +62,9 @@ namespace com.impactionalGames.LudoPrime
                 case loginState.authenticated:
                     handleOnAuthenticated();
                     break;
+                case loginState.loggedIn:
+                    handleOnLoggedIn();
+                    break;
             }
 
             loginStateChanged?.Invoke(state);
@@ -71,6 +77,7 @@ namespace com.impactionalGames.LudoPrime
         {
             enterPhonePanel.SetActive(true);
             enterOtpPanel.SetActive(false);
+            countyCodeField.text = "+91";
         }
 
         private void handleEnterOtpState()
@@ -80,6 +87,11 @@ namespace com.impactionalGames.LudoPrime
         }
 
         public void handleOnAuthenticated()
+        {
+            debugText.text = "authmangare event has been called";
+        }
+
+         public void handleOnLoggedIn()
         {
             SceneManager.LoadScene(gameMenu);
         }
@@ -91,6 +103,7 @@ namespace com.impactionalGames.LudoPrime
     {
         enterPhoneNum,
         enterOtpNum,
-        authenticated
+        authenticated, 
+        loggedIn
     }
 }

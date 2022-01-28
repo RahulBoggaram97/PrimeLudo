@@ -20,7 +20,7 @@ namespace com.impactionalGames.LudoPrime
             getPlayerName();
 
             phoneNum.text = playerPermData.getPhoneNumber();
-            emailId.text = playerPermData.getEmail();
+            //emailId.text = playerPermData.getEmail();
         }
 
 

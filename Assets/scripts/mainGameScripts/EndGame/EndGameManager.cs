@@ -20,6 +20,9 @@ namespace com.impactionalGames.LudoPrime
 
         public string levelToLoad;
 
+
+        public WinnerDecider winDecide;
+
         private void Start()
         {
             egm = this;
@@ -35,25 +38,14 @@ namespace com.impactionalGames.LudoPrime
 
             if (checkIfItsOneVoneLobby())
             {
-                declareOneVoneGame();
+                
 
-
+                winDecide.decideOnevOneWinner();
 
             }
             else if (!chechIfItsCustomLobby())
             {
-                if (checkIfItsOneWinnerLobby())
-                {
-                    declareOneWinnerGame();
-                }
-                else if (checkIfItsTwoWinnersLobby())
-                {
-                    declareOneWinnerGame();
-                }
-                else
-                {
-                    declareOneWinnerGame();
-                }
+                winDecide.decideFourPlayerGameWinner();
             }
             else
             {
@@ -61,6 +53,7 @@ namespace com.impactionalGames.LudoPrime
             }
         }
 
+        //deciding which Lobby
         bool checkIfItsOneVoneLobby()
         {
             switch (PhotonNetwork.CurrentLobby.Name)
@@ -137,7 +130,7 @@ namespace com.impactionalGames.LudoPrime
             }
         }
 
-
+        //declaring wins
         void declareOneVoneGame()
         {
             if(scoreDice[0].score > scoreDice[2].score)
@@ -212,6 +205,8 @@ namespace com.impactionalGames.LudoPrime
 
 
         }
+
+
 
         void setUpleaderBoardName(int rank1, int rank2, int rank3, int rank4)
         {

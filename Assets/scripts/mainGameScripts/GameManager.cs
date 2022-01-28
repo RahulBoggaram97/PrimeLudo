@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using UnityEngine.SceneManagement;
 
 
 namespace com.impactionalGames.LudoPrime
@@ -37,11 +37,15 @@ namespace com.impactionalGames.LudoPrime
         [Header("Number of steps to move")]
         public int numOfStepsToMove;
 
+        [Header("Scenes")]
+        public string walletCanvasname;
+
 
         private void Start()
         {
             gm = this;
 
+            SceneManager.LoadSceneAsync(walletCanvasname, LoadSceneMode.Additive);
             
         }
 
