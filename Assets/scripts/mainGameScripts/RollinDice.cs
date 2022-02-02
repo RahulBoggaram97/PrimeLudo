@@ -26,7 +26,7 @@ namespace com.impactionalGames.LudoPrime
         public int score = 0;
 
         public Text scoreText;
-        public DiceAudio diceSound;
+
         private void OnMouseDown()
         {
             photonDiceRoll();
@@ -61,7 +61,7 @@ namespace com.impactionalGames.LudoPrime
         {
             if (!this.hasRolled && !this.hasMoved)
             {
-                diceSound.PlaySound();
+
                 await rollDice();
 
 
