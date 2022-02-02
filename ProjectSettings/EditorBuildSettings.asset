@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mainGame/LudoBoard.unity
     guid: a94c5050d65359b4c9bc1700aa2a955b
+  - enabled: 1
+    path: Assets/Scenes/mainGame/addMoney.unity
+    guid: e53ddf427f27d55489c8243dc22ccab0
   m_configObjects: {}

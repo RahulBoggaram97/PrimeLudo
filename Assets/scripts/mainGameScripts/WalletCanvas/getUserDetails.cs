@@ -10,13 +10,13 @@ namespace com.impactionalGames.LudoPrime
     public class getUserDetails : MonoBehaviour
     {
 
-
+        public webVeiwManager webMan;
 
         private void Start()
         {
             getUserDet();
 
-            playerPermData.setPhoneNumber("7894561230");
+            
 
             Debug.Log("phone number in the start" + playerPermData.getPhoneNumber());
 
@@ -65,9 +65,16 @@ namespace com.impactionalGames.LudoPrime
                    
                     playerPermData.setMoney(int.Parse(node[0]["Wallet"].ToString()));
 
-                    Debug.Log("money is :" + node[0]["Wallet"].ToString());
-                   
-                    
+                    playerPermData.setWonMatches(node[0]["Won"].ToString());
+
+                    playerPermData.setLoseMatches(node[0]["Lose"].ToString());
+
+                    playerPermData.setDrawnMatches(node[0]["Drawn"].ToString());
+
+                    playerPermData.setTotalMatches(node[0]["Total"].ToString());
+
+                    webMan.status.text = "get user details got called    " + playerPermData.getMoney();
+
                 }
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Photon.Pun;
+using System;
 
 namespace com.impactionalGames.LudoPrime
 {
@@ -116,10 +117,69 @@ namespace com.impactionalGames.LudoPrime
 
 
             }
+
+
+            checkWhichLobby();
         }
 
-        
+        private void checkWhichLobby()
+        {
+            if (checkIfItsOneWinnerLobby())
+            {
+                distributor.distributePrizeOneWinner();
+            }
+            else if (checkIfItsTwoWinnersLobby())
+            {
+                distributor.distributePrizeTwoWinners();
+            }
+            else
+            {
+                distributor.distributePrizeThreeWinners();
+            }
+        }
 
+
+        bool checkIfItsOneWinnerLobby()
+        {
+            switch (PhotonNetwork.CurrentLobby.Name)
+            {
+                case "oneWinnerOne":
+                    return true;
+                case "oneWinnerFive":
+                    return true;
+                case "oneWinnerTen":
+                    return true;
+                case "oneWinnerTwentyFive":
+                    return true;
+                case "oneWinnerFifty":
+                    return true;
+                case "oneWinnerHundred":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        bool checkIfItsTwoWinnersLobby()
+        {
+            switch (PhotonNetwork.CurrentLobby.Name)
+            {
+                case "twoWinnersOne":
+                    return true;
+                case "twoWinnersFive":
+                    return true;
+                case "twoWinnersTen":
+                    return true;
+                case "twoWinnersTwentyFive":
+                    return true;
+                case "twoWinnersFifty":
+                    return true;
+                case "twoWinnersHundred":
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 
 

@@ -13,6 +13,12 @@ namespace com.impactionalGames.LudoPrime
         public static string MONEY_PREF_KEY = "money";
         public static string PHONE_NO_PREF_KEY = "phoneNumber";
 
+        public const string WON_MATCHES_PREF_KEY = "won";
+        public const string LOSE_MATCHES_PREF_KEY = "lose";
+        public const string DRAWN_MATCHES_PREF_KEY = "drawn";
+        public const string TOTAL_MATCHES_PREF_KEY = "total";
+
+
 
         //EMAIL
         public static void setEmail(string value)
@@ -67,6 +73,51 @@ namespace com.impactionalGames.LudoPrime
         public static string getPhoneNumber()
         {
             return PlayerPrefs.GetString(PHONE_NO_PREF_KEY);
+        }
+
+
+        //WON MATCHES
+        public static void setWonMatches(string value)
+        {
+            PlayerPrefs.SetString(WON_MATCHES_PREF_KEY, value);
+        }
+
+        public static string getWonMatches()
+        {
+            return PlayerPrefs.GetString(WON_MATCHES_PREF_KEY);
+        }
+
+        //LOSE MATCHES
+        public static void setLoseMatches(string value)
+        {
+            PlayerPrefs.SetString(LOSE_MATCHES_PREF_KEY, value);
+        }
+
+        public static string getLoseMatchesr()
+        {
+            return PlayerPrefs.GetString(LOSE_MATCHES_PREF_KEY);
+        }
+
+        //DRAWN MATCHES
+        public static void setDrawnMatches(string value)
+        {
+            PlayerPrefs.SetString(DRAWN_MATCHES_PREF_KEY, value);
+        }
+
+        public static string getDrawnMatches()
+        {
+            return PlayerPrefs.GetString(DRAWN_MATCHES_PREF_KEY);
+        }
+
+        //TOTAL MATCHES
+        public static void setTotalMatches(string value)
+        {
+            PlayerPrefs.SetString(TOTAL_MATCHES_PREF_KEY, value);
+        }
+
+        public static string getTotalMatches()
+        {
+            return PlayerPrefs.GetString(TOTAL_MATCHES_PREF_KEY);
         }
     }
 }

@@ -11353,6 +11353,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1707781024}
   - component: {fileID: 1707781023}
+  - component: {fileID: 1707781027}
+  - component: {fileID: 1707781026}
+  - component: {fileID: 1707781025}
+  - component: {fileID: 1707781028}
   m_Layer: 0
   m_Name: EndGameManager
   m_TagString: Untagged
@@ -11384,7 +11388,8 @@ MonoBehaviour:
   - {fileID: 361557454}
   - {fileID: 1374791610}
   - {fileID: 1061392886}
-  levelToLoad: GameMenu
+  gameFinishedLevelToLoad: 
+  winDecide: {fileID: 1707781026}
 --- !u!4 &1707781024
 Transform:
   m_ObjectHideFlags: 0
@@ -11399,6 +11404,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707781025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707781022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2808fff163595644ba59121c87dab5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winDec: {fileID: 1707781026}
+  transact: {fileID: 1707781027}
+  uiHandler: {fileID: 1707781028}
+--- !u!114 &1707781026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707781022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3036c8185f1797645aaa82877d682929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreDice: []
+  rank: 0
+  distributor: {fileID: 1707781025}
+--- !u!114 &1707781027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707781022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333710113cb761c40aa849716012de0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1707781028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707781022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363be3e6a7212f14b8ecbf8c5a1998e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endGameManager: {fileID: 1707781023}
+  winDec: {fileID: 1707781026}
 --- !u!1001 &1710380745
 PrefabInstance:
   m_ObjectHideFlags: 0
