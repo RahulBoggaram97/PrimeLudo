@@ -24,17 +24,33 @@ namespace com.impactionalGames.LudoPrime
 
         private void Start()
         {
+            if (auth == null)
+            {
 
-            
-            auth = FirebaseAuth.DefaultInstance;
+                auth = FirebaseAuth.DefaultInstance;
+
+            }
 
             debugText.text = "start method got called";
 
             if (auth.CurrentUser != null)
             {
-                authManager.instance.updateLoginState(loginState.loggedIn);
 
-                debugText.text = "start method got called" + " this is a user rn";
+
+                playerPermData.setPhoneNumber(auth.CurrentUser.PhoneNumber.Substring(3));
+                debugText.text = auth.CurrentUser.PhoneNumber;
+
+                if(playerPermData.getUserName() == string.Empty)
+                {
+                    authManager.instance.updateLoginState(loginState.createUser);
+
+                    debugText.text = "the user name is :  " + playerPermData.getUserName();
+                }
+                else
+                {
+                    authManager.instance.updateLoginState(loginState.loggedIn);
+                    debugText.text = "the user name is :  " + playerPermData.getUserName();
+                }
             }
             else
             {
@@ -100,33 +116,54 @@ namespace com.impactionalGames.LudoPrime
 
         public void signIn()
         {
+            
 
-            Credential credential = provider.GetCredential(verificationId, authManager.instance.OTPField.text);
 
+                
+                Credential credential = provider.GetCredential(verificationId, authManager.instance.OTPField.text);
 
-            auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
+                
+
+                
+
+                auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
                 {
-                    authManager.instance.debugText.text = ("SignInWithCredentialAsync encountered an error: " + task.Exception);
+                    debugText.text = "async got called";
 
-                    return;
-                }
+                    if (task.IsFaulted)
+                    {
+                        authManager.instance.debugText.text = ("SignInWithCredentialAsync encountered an error: " + task.Exception);
 
-                FirebaseUser newUser = task.Result;
-                authManager.instance.debugText.text = ("User signed in successfully" + "" +
+                        return;
+                    }
 
-                "Phone number: " + newUser.PhoneNumber + "" +
+                    FirebaseUser newUser = task.Result;
+                    authManager.instance.debugText.text = ("User signed in successfully" + "" +
 
-                "Phone provider ID: " + newUser.ProviderId);
+                    "Phone number: " + newUser.PhoneNumber + "" +
 
-                playerPermData.setPhoneNumber(newUser.PhoneNumber);
+                    "Phone provider ID: " + newUser.ProviderId);
 
-                authManager.instance.updateLoginState(loginState.authenticated);
+                    //playerPermData.setPhoneNumber(newUser.PhoneNumber);
 
-                debugText.text = authManager.instance.state.ToString();
+                    //authManager.instance.updateLoginState(loginState.authenticated);
 
-            });
+                    //debugText.text = authManager.instance.state.ToString();
+
+                });
+
+            debugText.text = "Authentication is complete please restart the app";
+
+
+
+        }
+
+
+        public void signout()
+        {
+            auth.SignOut();
+
+            debugText.text = auth.CurrentUser.ToString();
         }
 
 

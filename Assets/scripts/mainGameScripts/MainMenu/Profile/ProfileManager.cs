@@ -9,18 +9,36 @@ namespace com.impactionalGames.LudoPrime
 {
     public class ProfileManager : MonoBehaviour
     {
+
+
+        public getUserDetails getuseDetObject;
+
+
         public InputField playerNameField;
 
         public Text phoneNum;
-        public Text emailId;
-      
+        public Text walletCoinsText;
+        public Text totalmatchesText;
+        public Text wonMatchesText;
+        public Text loseMatchesText;
+
 
         private void Start()
         {
+            getuseDetObject.getUserDet();
+
             getPlayerName();
 
             phoneNum.text = playerPermData.getPhoneNumber();
-            //emailId.text = playerPermData.getEmail();
+
+            walletCoinsText.text = "Wallet Coins: " + playerPermData.getMoney();
+
+            totalmatchesText.text = playerPermData.getTotalMatches();
+
+            wonMatchesText.text = playerPermData.getWonMatches();
+
+            loseMatchesText.text = playerPermData.getLoseMatches();
+         
         }
 
 

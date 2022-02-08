@@ -22,7 +22,12 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby1);
+
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby1);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }
@@ -30,7 +35,11 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby5);
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby5);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }
@@ -38,7 +47,11 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby10);
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby10);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }
@@ -46,7 +59,11 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby25);
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby25);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }
@@ -54,7 +71,11 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby50);
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby50);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }
@@ -62,7 +83,11 @@ namespace com.impactionalGames.LudoPrime
         {
             await manageTheFee();
 
-            PhotonNetwork.JoinLobby(oneWinnerLobby100);
+            if (playerPermData.getMoney() > entryFee)
+
+                PhotonNetwork.JoinLobby(oneWinnerLobby100);
+
+            else redirectToPaymentOptions();
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
         }

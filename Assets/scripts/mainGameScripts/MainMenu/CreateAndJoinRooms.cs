@@ -69,7 +69,7 @@ namespace com.impactionalGames.LudoPrime
             if (PhotonNetwork.IsConnected)
             {
 
-                PhotonNetwork.JoinRandomRoom();
+                Debug.Log(PhotonNetwork.CurrentLobby.Name + " is the lobby and  the room is " + PhotonNetwork.CurrentRoom.Name);
             }
             else
             {

@@ -33,6 +33,9 @@ namespace com.impactionalGames.LudoPrime
         [Header("In-Game UI")]
         public GameObject scoreGameObject;
         public GameObject inGameUserNameGameObject;
+
+        
+
         
 
         private void Start()
@@ -50,7 +53,10 @@ namespace com.impactionalGames.LudoPrime
             {
                 if(PhotonNetwork.CurrentRoom.IsOpen != false)
                 {
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene("GameMenu");
+                   
+                    PhotonNetwork.LeaveRoom();
+                    PhotonNetwork.LeaveLobby();
                 }
             }
         }
@@ -77,6 +83,8 @@ namespace com.impactionalGames.LudoPrime
 
         public void lobbyStartButton()
         {
+            
+
             photonView.RPC("ownershipTransferAtTheStart", RpcTarget.AllBufferedViaServer);
             
             

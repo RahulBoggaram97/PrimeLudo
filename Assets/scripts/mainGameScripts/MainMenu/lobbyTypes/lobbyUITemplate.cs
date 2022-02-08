@@ -79,11 +79,21 @@ namespace com.impactionalGames.LudoPrime
 
         public async Task manageTheFee()
         {
-            olC.entryFee = entryFee;
-            manageFee?.Invoke(entryFee);
-            Debug.Log("fee managed");
-            await Task.Yield();
+            
+            
+
+                olC.entryFee = entryFee;
+                manageFee?.Invoke(entryFee);
+                Debug.Log("fee managed");
+                await Task.Yield();
+            
         }
 
+        public void redirectToPaymentOptions()
+        {
+            manageFee?.Invoke(entryFee);
+        }
+
+       
     }
 }

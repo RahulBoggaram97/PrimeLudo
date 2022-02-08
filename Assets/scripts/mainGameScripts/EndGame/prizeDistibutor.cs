@@ -13,6 +13,8 @@ namespace com.impactionalGames.LudoPrime
 
         public UIHandlerEndGame uiHandler;
 
+        public sendMatchDetails sendMatchdet;
+
         public void distributePrizeOneVOne()
         {
             switch (PhotonNetwork.CurrentLobby.Name)
@@ -22,10 +24,12 @@ namespace com.impactionalGames.LudoPrime
                    if(winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("2.4");
+                        sendMatchdet.sendMatchDet("true");
                     }
                     else
                     {
                         transact.transferMoney("-2.4");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -35,10 +39,12 @@ namespace com.impactionalGames.LudoPrime
                     if (winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("12");
+                        sendMatchdet.sendMatchDet("true");
                     }
                     else
                     {
                         transact.transferMoney("-12");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -48,10 +54,12 @@ namespace com.impactionalGames.LudoPrime
                     if (winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("24");
+                        sendMatchdet.sendMatchDet("true");
                     }
                     else
                     {
                         transact.transferMoney("-24");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -60,10 +68,13 @@ namespace com.impactionalGames.LudoPrime
                     if (winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("60");
+                        sendMatchdet.sendMatchDet("true");
+
                     }
                     else
                     {
                         transact.transferMoney("-60");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -73,10 +84,12 @@ namespace com.impactionalGames.LudoPrime
                     if (winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("120");
+                        sendMatchdet.sendMatchDet("true");
                     }
                     else
                     {
                         transact.transferMoney("-120");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -86,10 +99,12 @@ namespace com.impactionalGames.LudoPrime
                     if (winDec.rank == winOrLossState.rankOne)
                     {
                         transact.transferMoney("240");
+                        sendMatchdet.sendMatchDet("true");
                     }
                     else
                     {
                         transact.transferMoney("-240");
+                        sendMatchdet.sendMatchDet("false");
                     }
                     break;
 
@@ -209,18 +224,22 @@ namespace com.impactionalGames.LudoPrime
             {
                 case winOrLossState.rankOne:
                     transact.transferMoney(prizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankTwo:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
                 case winOrLossState.rankThree:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
                 case winOrLossState.rankFour:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
             }
@@ -238,18 +257,22 @@ namespace com.impactionalGames.LudoPrime
             {
                 case winOrLossState.rankOne:
                     transact.transferMoney(sixtyPerCentOfPrizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankTwo:
                     transact.transferMoney(fortyPerCentOfPrizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankThree:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
                 case winOrLossState.rankFour:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
             }
@@ -269,18 +292,22 @@ namespace com.impactionalGames.LudoPrime
             {
                 case winOrLossState.rankOne:
                     transact.transferMoney(fiftyPerCentOfPrizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankTwo:
                     transact.transferMoney(thirtyPerCentOfPrizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankThree:
                     transact.transferMoney(twentyPerCentOfPrizePool.ToString());
+                    sendMatchdet.sendMatchDet("true");
                     break;
 
                 case winOrLossState.rankFour:
                     transact.transferMoney("-" + entryFee.ToString());
+                    sendMatchdet.sendMatchDet("false");
                     break;
 
             }

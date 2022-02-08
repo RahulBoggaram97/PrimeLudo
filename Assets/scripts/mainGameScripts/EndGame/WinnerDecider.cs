@@ -15,6 +15,11 @@ namespace com.impactionalGames.LudoPrime
 
         public prizeDistibutor distributor;
 
+        [Header("Variables")]
+        public int rank1Index = 0;
+        public int rank2Index = 0;
+        public int rank3Index = 0;
+        public int rank4Index = 0;
 
         //FOR 2 PLAYERS
         public void decideOnevOneWinner()
@@ -22,15 +27,34 @@ namespace com.impactionalGames.LudoPrime
             int[] scorArr = new int[] {scoreDice[0].score, scoreDice[2].score};
 
             int maxScore = scorArr.Max();
-
-            int rank1Index = 0;
-
+             
+           
+           
+            //finding rank1
             for (int i = 0; i < scoreDice.Length; i++)
             {
-                if(maxScore == scoreDice[i].score)
+                if( i != 1 &&  i !=3)
                 {
-                    rank1Index = i;
+                    if (maxScore == scoreDice[i].score)
+                    {
+                        rank1Index = i;
+                    }
+
                 }
+
+                
+            }
+
+
+            //finding rank2
+            if( rank1Index == 0)
+            {
+                rank2Index = 1;
+            }
+            else if( rank1Index == 2)
+            {
+                rank1Index = 1;
+                rank2Index = 0;
             }
 
             if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank1Index])
@@ -52,18 +76,18 @@ namespace com.impactionalGames.LudoPrime
         {
             List<int> scorArr = new List<int> { scoreDice[0].score, scoreDice[1].score, scoreDice[2].score, scoreDice[3].score };
 
-            int maxScore = scorArr.Max();
+            
 
-            int rank1Index = 0;
-            int rank2Index = 0;
-            int rank3Index = 0;
-
+            int maxScore = (from number in scorArr
+                                 orderby number descending
+                                 select number).Distinct().First();
+            //finding rank1
             for (int i = 0; i < scoreDice.Length; i++)
             {
                 if (maxScore == scoreDice[i].score)
                 {
                     rank1Index = i;
-                    scorArr.RemoveAt(i);
+                   
                 }
             }
 
@@ -71,54 +95,70 @@ namespace com.impactionalGames.LudoPrime
             {
                 rank = winOrLossState.rankOne;
             }
-            else
+            
+             //finding rank2
+             maxScore = (from number in scorArr
+                            orderby number descending
+                            select number).Distinct().Skip(1).First();
+
+             for (int i = 0; i < scoreDice.Length; i++)
+             {
+                 if (maxScore == scoreDice[i].score)
+                 {
+                     rank2Index = i;
+                        
+                 }
+             }
+
+             if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank2Index])
+             {
+                  rank = winOrLossState.rankTwo;
+             }
+
+             //finding rank3  
+             maxScore = (from number in scorArr
+                         orderby number descending
+                         select number).Distinct().Skip(2).First();
+
+            for (int i = 0; i <= scoreDice.Length; i++)
             {
-                maxScore = scorArr.Max();
+                 if (maxScore == scoreDice[i].score)
+                 {
+                      rank3Index = i;
+                            
+                 }
+            }
 
-                for (int i = 0; i < scoreDice.Length; i++)
-                {
-                    if (maxScore == scoreDice[i].score)
-                    {
-                        rank2Index = i;
-                        scorArr.RemoveAt(i);
-                    }
-                }
-
-                if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank2Index])
-                {
-                    rank = winOrLossState.rankTwo;
-                }
-
-                else
-                {
-                    maxScore = scorArr.Max();
-
-                    for (int i = 0; i < scoreDice.Length; i++)
-                    {
-                        if (maxScore == scoreDice[i].score)
-                        {
-                            rank3Index = i;
-                            scorArr.RemoveAt(i);
-                        }
-                    }
-
-                    if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank2Index])
-                    {
+            if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank3Index])
+            {
                         rank = winOrLossState.rankThree;
-                    }
-
-                    else
-                    {
-                        rank = winOrLossState.rankFour;
-                    }
-                }
-
-
-
-
             }
 
 
+            //finding rank4    
+            maxScore = (from number in scorArr
+                        orderby number descending
+                        select number).Distinct().Skip(3).First();
+
+            for (int i = 0; i <= scoreDice.Length; i++)
+            {
+                if (maxScore == scoreDice[i].score)
+                {
+                    rank4Index = i;
+
+                }
+            }
+
+            if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[rank4Index])
+            {
+                rank = winOrLossState.rankFour;
+            }
+
+
+
+
+
+            //checking if the lobby is one winner, two winner or three winner to distribute the prize accordingly
             checkWhichLobby();
         }
 

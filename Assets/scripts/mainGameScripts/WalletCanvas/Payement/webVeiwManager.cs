@@ -17,7 +17,7 @@ namespace com.impactionalGames.LudoPrime
 
         public getUserDetails getDetails;
 
-        
+
 
         void Update()
         {
@@ -32,12 +32,23 @@ namespace com.impactionalGames.LudoPrime
             {
                 onTransactoinSuccessHandler();
             }
+            else if (murl.Contains("paynow"))
+            {
+                webViewObject.SetVisibility(true);
+            }
+            else if (murl.Contains("failure"))
+            {
+                onTransactoinSuccessHandler();
+            }
         }
 
 
         public void openPayTmGateway()
         {
+
             webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
+
+            webViewObject.SetVisibility(true);
             webViewObject.Init((msg) =>
             {
                 if (msg.StartsWith("http"))
@@ -68,7 +79,7 @@ namespace com.impactionalGames.LudoPrime
 
         void onTransactoinSuccessHandler()
         {
-            Destroy(webViewObject);
+            webViewObject.SetVisibility(false);
             getDetails.getUserDet();
         }
     }

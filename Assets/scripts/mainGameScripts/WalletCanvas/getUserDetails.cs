@@ -9,6 +9,7 @@ namespace com.impactionalGames.LudoPrime
 {
     public class getUserDetails : MonoBehaviour
     {
+        public MoneyManager moneyManager;
 
         public webVeiwManager webMan;
 
@@ -74,6 +75,9 @@ namespace com.impactionalGames.LudoPrime
                     playerPermData.setTotalMatches(node[0]["Total"].ToString());
 
                     webMan.status.text = "get user details got called    " + playerPermData.getMoney();
+
+                    moneyManager.moneyText.text = playerPermData.getMoney().ToString();
+                    moneyManager.totalBalanceText.text = playerPermData.getMoney().ToString();
 
                 }
             }

@@ -14,6 +14,7 @@ namespace com.impactionalGames.LudoPrime
 
         private void Awake()
         {
+            debugText.text = debugText.text + "         create new user awake called";
             authManager.loginStateChanged += HandleOnAuthenticate;
         }
 
@@ -24,9 +25,15 @@ namespace com.impactionalGames.LudoPrime
 
         private void HandleOnAuthenticate(loginState state)
         {
-            if(state == loginState.authenticated)
+            if(state == loginState.createUser)
             {
-                createUser();
+                debugText.text = playerPermData.getPhoneNumber();
+
+               if(playerPermData.getPhoneNumber() == String.Empty)
+                {
+                    debugText.text = "You need to authenticate";
+                }
+                
             }
         }
 
@@ -36,7 +43,7 @@ namespace com.impactionalGames.LudoPrime
 
        IEnumerator createNewUser_Coroutine()
         {
-          
+            debugText.text = "creating user";
 
             string url = "https://ludogame-backend.herokuapp.com/api/createUser";
             WWWForm form = new WWWForm();
@@ -48,11 +55,23 @@ namespace com.impactionalGames.LudoPrime
                 if(request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
                     debugText.text = request.error;
+
+                    if(request.downloadHandler.text.Contains("Duplicate entry"))
+                    {
+                        debugText.text = "user have already been created";
+
+                        authManager.instance.updateLoginState(loginState.loggedIn);
+
+                        playerPermData.setUserName(authManager.instance.userNameField.text);
+                    }
                 }
                 else
                 {
-                    debugText.text = request.error;
+                    debugText.text = "user have been created";
                     authManager.instance.updateLoginState(loginState.loggedIn);
+                    playerPermData.setUserName(authManager.instance.userNameField.text);
+
+
                 }
             }
         }

@@ -20,6 +20,7 @@ namespace com.impactionalGames.LudoPrime
         {
             if (photonView.IsMine)
             {
+                vibrationTest.vibrate(100);
                 photonView.RPC("movePiece", RpcTarget.AllBufferedViaServer);
             }
 

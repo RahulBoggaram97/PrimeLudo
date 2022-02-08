@@ -16,8 +16,11 @@ namespace com.impactionalGames.LudoPrime
         public GameObject addMoneyPanel;
         public GameObject settingsPanel;
         public GameObject rulesPanel;
+        public GameObject popUpPanel;
 
         public GameObject debugPanel;
+
+       
 
         
        
@@ -87,6 +90,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(false);
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
 
 
 
@@ -99,6 +103,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(false);
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
         }
         private void handleWalletPanelState()
         {
@@ -107,6 +112,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(false);
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
 
         }
         private void handleAddMoneyState()
@@ -116,6 +122,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(true);
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
 
         }
         private void handleSettingsState()
@@ -125,6 +132,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(false);
             settingsPanel.SetActive(true);
             rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
 
         }
         private void handleRulesState()
@@ -134,6 +142,7 @@ namespace com.impactionalGames.LudoPrime
             addMoneyPanel.SetActive(false);
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(true);
+            popUpPanel.SetActive(false);
 
         }
 

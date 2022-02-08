@@ -19,6 +19,18 @@ namespace com.impactionalGames.LudoPrime
         public const string TOTAL_MATCHES_PREF_KEY = "total";
 
 
+        //setting prefkeys
+        public const string LANGUAGE_PREF_KEY = "language";
+        public const string ENGLISH_KEY = "english";
+        public const string HINDI_KEY = "hindi";
+
+
+
+        public const string SOUNDS_PREF_KEY = "sounds";
+        public const string MUSIC_PREF_KEY = "music";
+        public const string VIBRATION_PREF_KEY = "vibration";
+
+
 
         //EMAIL
         public static void setEmail(string value)
@@ -93,7 +105,7 @@ namespace com.impactionalGames.LudoPrime
             PlayerPrefs.SetString(LOSE_MATCHES_PREF_KEY, value);
         }
 
-        public static string getLoseMatchesr()
+        public static string getLoseMatches()
         {
             return PlayerPrefs.GetString(LOSE_MATCHES_PREF_KEY);
         }
@@ -118,6 +130,58 @@ namespace com.impactionalGames.LudoPrime
         public static string getTotalMatches()
         {
             return PlayerPrefs.GetString(TOTAL_MATCHES_PREF_KEY);
+        }
+
+
+
+
+
+
+
+
+
+        //LANGUAGE
+        public static void setLanguage(string value)
+        {
+            PlayerPrefs.SetString(LANGUAGE_PREF_KEY, value);
+        }
+
+        public static string getLanguage()
+        {
+            return PlayerPrefs.GetString(LANGUAGE_PREF_KEY);
+        }
+
+        //SOUNDS
+        public static void setSoundsOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(SOUNDS_PREF_KEY, value.ToString());
+        }
+
+        public static bool getSoundsOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(SOUNDS_PREF_KEY));
+        }
+
+        //MUSIC
+        public static void setMusicOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(MUSIC_PREF_KEY, value.ToString());
+        }
+
+        public static bool getMusicOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(MUSIC_PREF_KEY));
+        }
+
+        //SOUNDS
+        public static void setVibrationOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(VIBRATION_PREF_KEY, value.ToString());
+        }
+
+        public static bool getVibrationOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(VIBRATION_PREF_KEY));
         }
     }
 }
