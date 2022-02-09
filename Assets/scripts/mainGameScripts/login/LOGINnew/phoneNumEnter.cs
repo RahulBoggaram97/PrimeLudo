@@ -15,7 +15,7 @@ namespace com.impactionalGames.LudoPrime
         PhoneAuthProvider provider;
 
         [Header("variables")]
-        private uint phoneAuthTimeOutMs = 60000;
+        private uint phoneAuthTimeOutMs = 600000;
         private string verificationId;
 
 
@@ -73,14 +73,14 @@ namespace com.impactionalGames.LudoPrime
                 provider = PhoneAuthProvider.GetInstance(auth);
                 debugText.text = "tester got called" + " provider:" + provider;
 
-                debugText.text = "tester got called" + " provider:" + provider + authManager.instance.phoneNoField.text;
+                debugText.text = "tester got called" + " provider:  " + provider + authManager.instance.phoneNoField.text;
                 provider.VerifyPhoneNumber(authManager.instance.countyCodeField.text +  authManager.instance.phoneNoField.text, phoneAuthTimeOutMs, null,
                                                                                   verificationCompleted: (credential) =>
                                                                                   {
                                                                                       //Auto - sms - retrieval or instant validation has succeeded(Android only).
                                                                                       //    There is no need to input the verification code.
                                                                                       //         `credential` can be used instead of calling GetCredential().
-                                                                                      authManager.instance.debugText.text = "verificationCompleted";
+                                                                                      authManager.instance.debugText.text = "verificationCompleted automatically";
                                                                                   },
                                                                                   verificationFailed: (error) =>
                                                                                   {
@@ -105,7 +105,8 @@ namespace com.impactionalGames.LudoPrime
                                                                                       //Called when the auto-sms - retrieval has timed out, based on the given
                                                                                       //  timeout parameter.
                                                                                       //         `id` contains the verification id of the request that timed out.
-                                                                                          });
+                                                                                      authManager.instance.debugText.text = debugText.text + "timed out";
+                                                                                  });
             }
             catch (System.Exception e)
             {

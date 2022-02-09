@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -151,6 +152,30 @@ namespace com.impactionalGames.LudoPrime
 
                 //GameManager.gm.numOfStepsToMove = 0;
 
+            }
+            else
+            {
+                if (this.name.Contains("Yellow") && GameManager.gm.yellowCompletedPlayers == 3)
+                {
+                    GameManager.gm.transferDice = true;
+                }
+                else if (this.name.Contains("Green") && GameManager.gm.greenCompletedPlayers == 3)
+                {
+                    GameManager.gm.transferDice = true;
+                }
+                else if (this.name.Contains("Red") && GameManager.gm.redCompletedPlayers == 3)
+                {
+                    GameManager.gm.transferDice = true;
+                }
+                else if (this.name.Contains("Blue") && GameManager.gm.blueCompletedPlayers == 3)
+                {
+                    GameManager.gm.transferDice = true;
+                }
+                else
+                {
+                    GameManager.gm.rolleddice.hasMoved = false;
+
+                }
             }
             GameManager.gm.CanPlayerMove = true;
             GameManager.gm.RollingDiceManager();

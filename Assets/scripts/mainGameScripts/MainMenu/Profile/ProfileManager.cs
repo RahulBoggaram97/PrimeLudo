@@ -25,6 +25,8 @@ namespace com.impactionalGames.LudoPrime
 
         private void Start()
         {
+            playerPermData.setPhoneNumber("9876543210");
+
             getuseDetObject.getUserDet();
 
             getPlayerName();

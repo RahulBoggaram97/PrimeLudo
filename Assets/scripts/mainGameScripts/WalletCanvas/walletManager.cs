@@ -16,7 +16,10 @@ namespace com.impactionalGames.LudoPrime
         public GameObject addMoneyPanel;
         public GameObject settingsPanel;
         public GameObject rulesPanel;
+        public GameObject withdrawPanel;
+
         public GameObject popUpPanel;
+        
 
         public GameObject debugPanel;
 
@@ -69,6 +72,9 @@ namespace com.impactionalGames.LudoPrime
                 case walletState.addMoney:
                     handleAddMoneyState();
                     break;
+                case walletState.withdraw:
+                    handleWithdrawState();
+                    break;
                 case walletState.settings:
                     handleSettingsState();
                     break;
@@ -91,6 +97,7 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
 
 
 
@@ -104,6 +111,7 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
         }
         private void handleWalletPanelState()
         {
@@ -113,6 +121,7 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
 
         }
         private void handleAddMoneyState()
@@ -123,6 +132,19 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(false);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
+
+        }
+
+        private void handleWithdrawState()
+        {
+            profilePanel.SetActive(false);
+            walletPanel.SetActive(false);
+            addMoneyPanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            rulesPanel.SetActive(false);
+            popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(true);
 
         }
         private void handleSettingsState()
@@ -133,6 +155,7 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(true);
             rulesPanel.SetActive(false);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
 
         }
         private void handleRulesState()
@@ -143,6 +166,7 @@ namespace com.impactionalGames.LudoPrime
             settingsPanel.SetActive(false);
             rulesPanel.SetActive(true);
             popUpPanel.SetActive(false);
+            withdrawPanel.SetActive(false);
 
         }
 
@@ -180,6 +204,11 @@ namespace com.impactionalGames.LudoPrime
             walletManager.instance.updateWalletState(walletState.addMoney);
         }
 
+        public void WithdrawOnClick()
+        {
+            walletManager.instance.updateWalletState(walletState.withdraw);
+        }
+
         public void SettingsOnClick()
         {
             walletManager.instance.updateWalletState(walletState.settings);
@@ -199,6 +228,7 @@ namespace com.impactionalGames.LudoPrime
         profile,
         walletPanel,
         addMoney,
+        withdraw,
         settings,
         rules
    
