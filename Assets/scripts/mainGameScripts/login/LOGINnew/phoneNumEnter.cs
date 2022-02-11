@@ -31,7 +31,7 @@ namespace com.impactionalGames.LudoPrime
 
             }
 
-            debugText.text = "start method got called";
+            
 
             if (auth.CurrentUser != null)
             {
@@ -54,7 +54,7 @@ namespace com.impactionalGames.LudoPrime
             }
             else
             {
-                authManager.instance.debugText.text = "auto login is not working";
+                authManager.instance.debugText.text = "No user Found";
             }
 
 
@@ -67,20 +67,20 @@ namespace com.impactionalGames.LudoPrime
 
         void tester()
         {
-            debugText.text = "tester got called";
+            debugText.text = "Sending the code...";
             try
             {
                 provider = PhoneAuthProvider.GetInstance(auth);
-                debugText.text = "tester got called" + " provider:" + provider;
+                //debugText.text = "tester got called" + " provider:" + provider;
 
-                debugText.text = "tester got called" + " provider:  " + provider + authManager.instance.phoneNoField.text;
+                //debugText.text = "tester got called" + " provider:  " + provider + authManager.instance.phoneNoField.text;
                 provider.VerifyPhoneNumber(authManager.instance.countyCodeField.text +  authManager.instance.phoneNoField.text, phoneAuthTimeOutMs, null,
                                                                                   verificationCompleted: (credential) =>
                                                                                   {
                                                                                       //Auto - sms - retrieval or instant validation has succeeded(Android only).
                                                                                       //    There is no need to input the verification code.
                                                                                       //         `credential` can be used instead of calling GetCredential().
-                                                                                      authManager.instance.debugText.text = "verificationCompleted automatically";
+                                                                                      authManager.instance.debugText.text = "VerificationCompleted automatically";
                                                                                   },
                                                                                   verificationFailed: (error) =>
                                                                                   {
@@ -92,7 +92,7 @@ namespace com.impactionalGames.LudoPrime
                                                                                   {
 
                                                                                       verificationId = id;
-                                                                                      authManager.instance.debugText.text = "code sent and the id is :" + id + " token is :" + token;
+                                                                                      authManager.instance.debugText.text = "Code sent. Please enter the otp.";
                                                                                       authManager.instance.updateLoginState(loginState.enterOtpNum);
                                                                                       //Verification code was successfully sent via SMS.
                                                                                       //         `id` contains the verification id that will need to passed in with
@@ -153,7 +153,7 @@ namespace com.impactionalGames.LudoPrime
 
                 });
 
-            debugText.text = "Authentication is complete please restart the app";
+            debugText.text = "Authentication is complete please restart the app.";
 
 
 

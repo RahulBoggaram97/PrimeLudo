@@ -20,9 +20,10 @@ namespace com.impactionalGames.LudoPrime
                 SceneManager.LoadScene("GameMenu");
 
                 PhotonNetwork.LeaveRoom();
-                PhotonNetwork.LeaveLobby(); SceneManager.LoadScene("GameMenu");
+                PhotonNetwork.LeaveLobby(); 
+                SceneManager.LoadScene("GameMenu");
 
-               ;
+               
             }
         }
 
