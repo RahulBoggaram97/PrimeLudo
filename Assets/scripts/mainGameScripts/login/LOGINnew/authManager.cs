@@ -10,6 +10,8 @@ namespace com.impactionalGames.LudoPrime
 {
     public class authManager : MonoBehaviour
     {
+        
+
         [Header("Phone no. panel")]
         public GameObject enterPhonePanel;
         public InputField phoneNoField;
@@ -26,6 +28,12 @@ namespace com.impactionalGames.LudoPrime
 
         [Header("For Debugging")]
         public Text debugText;
+
+        [Header("Pop up Panel")]
+        public GameObject popupPanle;
+        public Text popUpText;
+        public Button popupButton;
+
 
         [Header("Singleton Vars")]
         [SerializeField]  public static authManager instance;
@@ -71,14 +79,16 @@ namespace com.impactionalGames.LudoPrime
                 case loginState.loggedIn:
                     handleOnLoggedIn();
                     break;
-                
+                case loginState.popUp:
+                    handlePopUp();
+                    break;
             }
 
             loginStateChanged?.Invoke(state);
 
         }
 
-      
+
 
         private void handleEnterPhoneNumState()
         {
@@ -86,6 +96,7 @@ namespace com.impactionalGames.LudoPrime
             enterOtpPanel.SetActive(false);
             countyCodeField.text = "+91";
             userNamePanel.SetActive(false);
+            popupPanle.SetActive(false);
         }
 
         private void handleEnterOtpState()
@@ -114,6 +125,11 @@ namespace com.impactionalGames.LudoPrime
             SceneManager.LoadScene(gameMenu);
         }
 
+        private void handlePopUp()
+        {
+            popupPanle.SetActive(true);
+        }
+
 
     }
 
@@ -123,7 +139,8 @@ namespace com.impactionalGames.LudoPrime
         enterOtpNum,
         authenticated,
         createUser,
-        loggedIn
+        loggedIn, 
+        popUp
         
     }
 }

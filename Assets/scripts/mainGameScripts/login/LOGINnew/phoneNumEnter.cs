@@ -54,7 +54,9 @@ namespace com.impactionalGames.LudoPrime
             }
             else
             {
-                authManager.instance.debugText.text = "No user Found";
+                //authManager.instance.debugText.text = "No user Found";
+                authManager.instance.popUpText.text = "Atuthenticate your phone number in order to proceed";
+                authManager.instance.updateLoginState(loginState.popUp);
             }
 
 
@@ -67,7 +69,7 @@ namespace com.impactionalGames.LudoPrime
 
         void tester()
         {
-            debugText.text = "Sending the code...";
+            //debugText.text = "Sending the code...";
             try
             {
                 provider = PhoneAuthProvider.GetInstance(auth);
@@ -80,19 +82,51 @@ namespace com.impactionalGames.LudoPrime
                                                                                       //Auto - sms - retrieval or instant validation has succeeded(Android only).
                                                                                       //    There is no need to input the verification code.
                                                                                       //         `credential` can be used instead of calling GetCredential().
-                                                                                      authManager.instance.debugText.text = "VerificationCompleted automatically";
+                                                                                      //authManager.instance.debugText.text = "VerificationCompleted automatically";
+
+                                                                                      if (auth.CurrentUser != null)
+                                                                                      {
+
+
+                                                                                          playerPermData.setPhoneNumber(auth.CurrentUser.PhoneNumber.Substring(3));
+                                                                                          debugText.text = auth.CurrentUser.PhoneNumber;
+
+                                                                                          if (playerPermData.getUserName() == string.Empty)
+                                                                                          {
+                                                                                              authManager.instance.updateLoginState(loginState.createUser);
+
+                                                                                              debugText.text = "the user name is :  " + playerPermData.getUserName();
+                                                                                          }
+                                                                                          else
+                                                                                          {
+                                                                                              authManager.instance.updateLoginState(loginState.loggedIn);
+                                                                                              debugText.text = "the user name is :  " + playerPermData.getUserName();
+                                                                                          }
+                                                                                      }
+
+
+
+
+
+
+
+
                                                                                   },
                                                                                   verificationFailed: (error) =>
                                                                                   {
                                                                                       //The verification code was not sent.
                                                                                       //         `error` contains a human readable explanation of the problem.
-                                                                                      authManager.instance.debugText.text = error.ToString();
+                                                                                      //authManager.instance.debugText.text = error.ToString();
+                                                                                      authManager.instance.popUpText.text = error.ToString();
+                                                                                      authManager.instance.updateLoginState(loginState.popUp);
                                                                                   },
                                                                                   codeSent: (id, token) =>
                                                                                   {
 
                                                                                       verificationId = id;
-                                                                                      authManager.instance.debugText.text = "Code sent. Please enter the otp.";
+                                                                                      //authManager.instance.debugText.text = "Code sent. Please enter the otp.";
+                                                                                      authManager.instance.popUpText.text = "Code sent. Please enter the otp";
+                                                                                      authManager.instance.updateLoginState(loginState.popUp);
                                                                                       authManager.instance.updateLoginState(loginState.enterOtpNum);
                                                                                       //Verification code was successfully sent via SMS.
                                                                                       //         `id` contains the verification id that will need to passed in with
@@ -153,7 +187,10 @@ namespace com.impactionalGames.LudoPrime
 
                 });
 
-            debugText.text = "Authentication is complete please restart the app.";
+            //debugText.text = "Authentication is complete please restart the app.";
+
+            authManager.instance.popUpText.text = "Authentication is complete please restart the app";
+            authManager.instance.updateLoginState(loginState.popUp);
 
 
 

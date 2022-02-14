@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeLoading: 3
-  sceneNameToLoad: GameMenu
+  sceneNameToLoad: login
 --- !u!4 &1137327877
 Transform:
   m_ObjectHideFlags: 0

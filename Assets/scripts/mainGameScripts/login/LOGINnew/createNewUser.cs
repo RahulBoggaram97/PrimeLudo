@@ -14,7 +14,7 @@ namespace com.impactionalGames.LudoPrime
 
         private void Awake()
         {
-            debugText.text = debugText.text + "         create new user awake called";
+            //debugText.text = debugText.text + "         create new user awake called";
             authManager.loginStateChanged += HandleOnAuthenticate;
         }
 
