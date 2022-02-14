@@ -54,12 +54,44 @@ namespace com.impactionalGames.LudoPrime
             }
             else
             {
-                //authManager.instance.debugText.text = "No user Found";
-                authManager.instance.popUpText.text = "Atuthenticate your phone number in order to proceed";
-                authManager.instance.updateLoginState(loginState.popUp);
+                authManager.instance.debugText.text = "No user Found.";
+                //authManager.instance.popUpText.text = "Atuthenticate your phone number in order to proceed";
+                //authManager.instance.updateLoginState(loginState.popUp);
             }
 
 
+        }
+
+
+        private void Update()
+        {
+            if (auth.CurrentUser != null)
+            {
+
+
+                playerPermData.setPhoneNumber(auth.CurrentUser.PhoneNumber.Substring(3));
+                debugText.text = auth.CurrentUser.PhoneNumber;
+
+                if (playerPermData.getUserName() == string.Empty)
+                {
+                    if(authManager.instance.state != loginState.createUser)
+                    authManager.instance.updateLoginState(loginState.createUser);
+
+                    //debugText.text = "the user name is :  " + playerPermData.getUserName();
+                }
+                else
+                {
+                    if(authManager.instance.state != loginState.loggedIn)
+                    authManager.instance.updateLoginState(loginState.loggedIn);
+                    debugText.text = "the user name is :  " + playerPermData.getUserName();
+                }
+            }
+            else
+            {
+                authManager.instance.debugText.text = "No user Found.";
+                //authManager.instance.popUpText.text = "Atuthenticate your phone number in order to proceed";
+                //authManager.instance.updateLoginState(loginState.popUp);
+            }
         }
 
         public void authenticate()
