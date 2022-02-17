@@ -1,5 +1,5 @@
 ﻿using System;
-using Proyecto26;
+/*using Proyecto26*/
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
