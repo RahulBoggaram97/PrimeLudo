@@ -53,8 +53,8 @@ namespace com.impactionalGames.LudoPrime
             mainMenuPanel.SetActive(false);
             playOnlinePanel.SetActive(false);
             playWithFriendsMenuPanel.SetActive(false);
-            
 
+            playerPermData.setPhoneNumber("9876543210");
             connect();
 
            
