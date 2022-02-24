@@ -18,6 +18,9 @@ namespace com.impactionalGames.LudoPrime
         public const string DRAWN_MATCHES_PREF_KEY = "drawn";
         public const string TOTAL_MATCHES_PREF_KEY = "total";
 
+        public const string REFER_CODE_PREF_KEY = "referCode";
+        public const string REFERED_BY_CODE_PREF_KEY = "referedBy";
+
 
         //setting prefkeys
         public const string LANGUAGE_PREF_KEY = "language";
@@ -183,5 +186,28 @@ namespace com.impactionalGames.LudoPrime
         {
             return System.Convert.ToBoolean(PlayerPrefs.GetString(VIBRATION_PREF_KEY));
         }
+
+        //REFER CODE
+        public static void setReferCode(string value)
+        {
+            PlayerPrefs.SetString(REFER_CODE_PREF_KEY, value);
+        }
+
+        public static string getReferCode()
+        {
+            return PlayerPrefs.GetString(REFER_CODE_PREF_KEY);
+        }
+
+        //REFERED BY
+        public static void setReferdBy(string value)
+        {
+            PlayerPrefs.SetString(REFERED_BY_CODE_PREF_KEY, value);
+        }
+
+        public static string getReferedBy()
+        {
+            return PlayerPrefs.GetString(REFERED_BY_CODE_PREF_KEY);
+        }
+
     }
 }

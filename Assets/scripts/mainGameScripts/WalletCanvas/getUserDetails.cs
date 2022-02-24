@@ -52,6 +52,8 @@ namespace com.impactionalGames.LudoPrime
                     //"Joined":"2022-01-27T03:38:17.000Z",
                     //"Name":"prime1643254696575",
                     //"ProfilePic":"undefined",
+                    //"ReferralCode":null,
+                    //"Referrer":null,"
                     //"Wallet":0,
                     //"Points":100,
                     //"Won":0,
@@ -73,6 +75,10 @@ namespace com.impactionalGames.LudoPrime
                     playerPermData.setDrawnMatches(node[0]["Drawn"].ToString());
 
                     playerPermData.setTotalMatches(node[0]["Total"].ToString());
+
+                    playerPermData.setReferCode(node[0]["ReferralCode"].ToString());
+
+                    playerPermData.setReferdBy(node[0]["Referrer"].ToString());
 
                     webMan.status.text = "get user details got called    " + playerPermData.getMoney();
 

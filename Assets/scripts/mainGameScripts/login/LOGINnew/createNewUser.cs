@@ -12,6 +12,8 @@ namespace com.impactionalGames.LudoPrime
 
         public Text debugText;
 
+        public Text referelCodeText;
+
         private void Awake()
         {
             //debugText.text = debugText.text + "         create new user awake called";
@@ -48,6 +50,7 @@ namespace com.impactionalGames.LudoPrime
             string url = "https://ludogame-backend.herokuapp.com/api/createUser";
             WWWForm form = new WWWForm();
             form.AddField("Phone", playerPermData.getPhoneNumber());
+            form.AddField("Referrer", referelCodeText.text);
 
             using (UnityWebRequest request = UnityWebRequest.Post(url, form))
             {
